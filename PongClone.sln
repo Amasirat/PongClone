@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongClone", "PongClone.csproj", "{D6C5AE5E-A40C-413E-8FE4-6E305CDF2BCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6C5AE5E-A40C-413E-8FE4-6E305CDF2BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6C5AE5E-A40C-413E-8FE4-6E305CDF2BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6C5AE5E-A40C-413E-8FE4-6E305CDF2BCC}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{D6C5AE5E-A40C-413E-8FE4-6E305CDF2BCC}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{D6C5AE5E-A40C-413E-8FE4-6E305CDF2BCC}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{D6C5AE5E-A40C-413E-8FE4-6E305CDF2BCC}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
