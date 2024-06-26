@@ -3,11 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://judfu0sh7ot7" path="res://assets/sprites/Dot.png" id="1_rxknd"]
 [ext_resource type="Script" path="res://scripts/Dot.cs" id="1_t5567"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7b41"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqwle"]
+size = Vector2(46, 46)
 
 [node name="Dot" type="RigidBody2D"]
-position = Vector2(449, 353)
+position = Vector2(1, -25)
+mass = 0.5
 gravity_scale = 0.0
+linear_velocity = Vector2(4, 4)
+linear_damp_mode = 1
 script = ExtResource("1_t5567")
 metadata/_edit_group_ = true
 
@@ -16,5 +20,4 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_rxknd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2.3, 2.3)
-shape = SubResource("RectangleShape2D_k7b41")
+shape = SubResource("RectangleShape2D_aqwle")
