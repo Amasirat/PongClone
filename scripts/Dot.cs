@@ -11,7 +11,5 @@ public partial class Dot : RigidBody2D
         {
             state.LinearVelocity = LinearVelocity.Bounce(collisionInfo.GetNormal());
         }
-        GD.Print(LinearVelocity);
-        GD.Print(collisionInfo);
     }
 }
