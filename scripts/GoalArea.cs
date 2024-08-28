@@ -8,7 +8,6 @@ public partial class GoalArea : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        GD.Print("goalareaentered!");
         EmitSignal(SignalName.Goal);
     }
 }

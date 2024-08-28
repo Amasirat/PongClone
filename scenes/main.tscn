@@ -1,15 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://dew225y4rby51"]
+[gd_scene load_steps=8 format=3 uid="uid://dew225y4rby51"]
 
 [ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="1_fbtx0"]
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_xd1ko"]
 [ext_resource type="PackedScene" uid="uid://cusq2dbell4np" path="res://scenes/guard.tscn" id="3_gdmqw"]
 [ext_resource type="PackedScene" uid="uid://vn4vj6s2nqe0" path="res://scenes/goal_area.tscn" id="4_kdojg"]
+[ext_resource type="PackedScene" uid="uid://dx2fljytesr71" path="res://scenes/score_ui.tscn" id="5_kfdmy"]
+[ext_resource type="PackedScene" uid="uid://claudxyqvp1cm" path="res://scenes/timer_ui.tscn" id="6_2nt4e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvpj6"]
 size = Vector2(954, 167.5)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xd1ko")
+
+[node name="ScoreUI" parent="." instance=ExtResource("5_kfdmy")]
+
+[node name="TimerUI" parent="." instance=ExtResource("6_2nt4e")]
+offset_left = 386.0
+offset_top = -7.0
+offset_right = 386.0
+offset_bottom = -7.0
 
 [node name="Dot" parent="." instance=ExtResource("1_fbtx0")]
 position = Vector2(488, 347)
@@ -51,5 +61,19 @@ position = Vector2(-3, -25)
 [node name="GoalAreaRight" parent="." instance=ExtResource("4_kdojg")]
 position = Vector2(1196, -61)
 
+[node name="RespawnDelay" type="Timer" parent="."]
+one_shot = true
+
+[node name="DotPosition" type="Marker2D" parent="."]
+position = Vector2(488, 347)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[connection signal="LeftUpdate" from="." to="ScoreUI" method="UpdateLeftScore"]
+[connection signal="RightUpdate" from="." to="ScoreUI" method="UpdateRightScore"]
 [connection signal="Goal" from="GoalAreaLeft" to="." method="OnGoalAreaLeft"]
 [connection signal="Goal" from="GoalAreaRight" to="." method="OnGoalAreaRight"]
+[connection signal="timeout" from="RespawnDelay" to="." method="RespawnDot"]
+[connection signal="timeout" from="Timer" to="TimerUI" method="_on_timer_timeout"]

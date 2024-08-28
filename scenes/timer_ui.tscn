@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://claudxyqvp1cm"]
+
+[ext_resource type="Script" path="res://scripts/TimerUI.cs" id="1_bife0"]
+[ext_resource type="FontFile" uid="uid://dmkpn1jvp270u" path="res://assets/fonts/New_Amsterdam/NewAmsterdam-Regular.ttf" id="2_arsxe"]
+
+[node name="TimerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 392.0
+offset_right = -344.0
+offset_bottom = -629.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bife0")
+metadata/_edit_group_ = true
+
+[node name="Minutes" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 88.0
+offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("2_arsxe")
+theme_override_font_sizes/font_size = 75
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Colon" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 136.0
+offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("2_arsxe")
+theme_override_font_sizes/font_size = 75
+text = ":"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Seconds" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_right = 180.0
+offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("2_arsxe")
+theme_override_font_sizes/font_size = 75
+text = "00"
