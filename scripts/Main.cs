@@ -12,6 +12,7 @@ public partial class Main : Node2D
         delay = GetNode<Timer>("RespawnDelay");
         timer = GetNode<Timer>("Timer");
     }
+    // Once the dot enters GoalArea, the main script sends a signal to the ScoreUI to change its values
     public void OnGoalAreaLeft()
     {
         EmitSignal(SignalName.LeftUpdate);

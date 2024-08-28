@@ -15,6 +15,7 @@ public partial class Dot : RigidBody2D
         if(collisionInfo != null)
         {
             state.LinearVelocity = LinearVelocity.Bounce(collisionInfo.GetNormal());
+            // Play sound upon collision
             var rng = new RandomNumberGenerator();
             soundPlayer.PitchScale = rng.RandfRange(0.5f, 1.0f);
             soundPlayer.Play();

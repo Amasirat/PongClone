@@ -1,11 +1,6 @@
 using Godot;
-using System;
-
 public partial class Guard : StaticBody2D
 {
-    public override void _Ready()
-    {
-    }
     public override void _Process(double delta) 
     {
         int direction = 0;
@@ -23,6 +18,8 @@ public partial class Guard : StaticBody2D
         Position += pos * speed * (float)delta;
     }
     
+    // Use these variables to give custom actions to an instance.
+    // It is meant make two player controls easier to configure
     [Export]
     public string upAction;
     [Export]
