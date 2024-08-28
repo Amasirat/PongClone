@@ -17,5 +17,5 @@ Sound Effects from SoundBible:
 Shake and Roll Dice Sound Effect: [**Mike Koenig**](https://soundbible.com/182-Shake-And-Roll-Dice.html#)
 
 ## License
-MIT
+[The MIT License](https://opensource.org/license/mit)
 
