@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Ui : Control
+public partial class ScoreUI : Control
 {
     public override void _Ready()
     {
