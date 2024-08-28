@@ -22,8 +22,7 @@ public partial class Guard : StaticBody2D
         Vector2 pos = new Vector2(0, direction);
         Position += pos * speed * (float)delta;
     }
-
-
+    
     [Export]
     public string upAction;
     [Export]

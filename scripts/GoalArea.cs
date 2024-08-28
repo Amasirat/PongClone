@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class GoalArea : Area2D
 {
@@ -9,5 +8,6 @@ public partial class GoalArea : Area2D
     private void OnBodyEntered(Node2D body)
     {
         EmitSignal(SignalName.Goal);
+        GetNode<AudioStreamPlayer2D>("Sound").Play();
     }
 }

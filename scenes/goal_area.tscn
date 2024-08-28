@@ -13,4 +13,6 @@ position = Vector2(-121.5, 356.5)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_jiahj")
 
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

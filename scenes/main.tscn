@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dew225y4rby51"]
+[gd_scene load_steps=9 format=3 uid="uid://dew225y4rby51"]
 
 [ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="1_fbtx0"]
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_xd1ko"]
+[ext_resource type="Texture2D" uid="uid://c0qj5q030cg28" path="res://assets/art/background.jpg" id="2_nr21c"]
 [ext_resource type="PackedScene" uid="uid://cusq2dbell4np" path="res://scenes/guard.tscn" id="3_gdmqw"]
 [ext_resource type="PackedScene" uid="uid://vn4vj6s2nqe0" path="res://scenes/goal_area.tscn" id="4_kdojg"]
 [ext_resource type="PackedScene" uid="uid://dx2fljytesr71" path="res://scenes/score_ui.tscn" id="5_kfdmy"]
@@ -13,18 +14,23 @@ size = Vector2(954, 167.5)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xd1ko")
 
-[node name="ScoreUI" parent="." instance=ExtResource("5_kfdmy")]
-
-[node name="TimerUI" parent="." instance=ExtResource("6_2nt4e")]
-offset_left = 361.0
-offset_top = -4.0
-offset_right = 361.0
-offset_bottom = -4.0
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 3508.0
+offset_bottom = 2480.0
+texture = ExtResource("2_nr21c")
 
 [node name="Dot" parent="." instance=ExtResource("1_fbtx0")]
 position = Vector2(488, 347)
 mass = 0.1
-linear_velocity = Vector2(6, 4)
+linear_velocity = Vector2(8, 4)
+
+[node name="ScoreUI" parent="." instance=ExtResource("5_kfdmy")]
+
+[node name="TimerUI" parent="." instance=ExtResource("6_2nt4e")]
+offset_left = 343.0
+offset_top = -4.0
+offset_right = 343.0
+offset_bottom = -4.0
 
 [node name="LowerBoundary" type="StaticBody2D" parent="."]
 position = Vector2(458, 788)

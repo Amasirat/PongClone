@@ -12,11 +12,6 @@ public partial class Main : Node2D
         delay = GetNode<Timer>("RespawnDelay");
         timer = GetNode<Timer>("Timer");
     }
-
-    public override void _Process(double delta)
-    {   
-        GD.Print($"{timer.TimeLeft}");
-    }
     public void OnGoalAreaLeft()
     {
         EmitSignal(SignalName.LeftUpdate);

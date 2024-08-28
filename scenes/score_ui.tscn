@@ -18,12 +18,12 @@ script = ExtResource("1_4ffpc")
 
 [node name="LeftScore" type="Label" parent="."]
 layout_mode = 0
-offset_left = 265.0
-offset_top = 64.0
-offset_right = 382.0
-offset_bottom = 137.0
+offset_left = 273.0
+offset_right = 297.0
+offset_bottom = 73.0
 theme = SubResource("Theme_yryjg")
 theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.20147, 0.143955, 0.89217, 1)
 theme_override_fonts/font = ExtResource("1_8f82j")
 theme_override_font_sizes/font_size = 60
 text = "0"
@@ -31,10 +31,10 @@ horizontal_alignment = 1
 
 [node name="RightScore" type="Label" parent="."]
 layout_mode = 0
-offset_left = 585.0
-offset_top = 64.0
-offset_right = 673.0
-offset_bottom = 137.0
+offset_left = 601.0
+offset_right = 625.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.905105, 0, 0.155149, 1)
 theme_override_fonts/font = ExtResource("1_8f82j")
 theme_override_font_sizes/font_size = 60
 text = "0"
