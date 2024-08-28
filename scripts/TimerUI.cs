@@ -24,7 +24,7 @@ public partial class TimerUI : Control
 
     private void UpdateLabels()
     {
-        secondsLabel.Text = minutes.ToString("00");
+        secondsLabel.Text = seconds.ToString("00");
         minutesLabel.Text = minutes.ToString("00");
     }
 

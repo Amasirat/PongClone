@@ -16,10 +16,10 @@ script = ExtResource("1_xd1ko")
 [node name="ScoreUI" parent="." instance=ExtResource("5_kfdmy")]
 
 [node name="TimerUI" parent="." instance=ExtResource("6_2nt4e")]
-offset_left = 386.0
-offset_top = -7.0
-offset_right = 386.0
-offset_bottom = -7.0
+offset_left = 361.0
+offset_top = -4.0
+offset_right = 361.0
+offset_bottom = -4.0
 
 [node name="Dot" parent="." instance=ExtResource("1_fbtx0")]
 position = Vector2(488, 347)
@@ -76,4 +76,4 @@ autostart = true
 [connection signal="Goal" from="GoalAreaLeft" to="." method="OnGoalAreaLeft"]
 [connection signal="Goal" from="GoalAreaRight" to="." method="OnGoalAreaRight"]
 [connection signal="timeout" from="RespawnDelay" to="." method="RespawnDot"]
-[connection signal="timeout" from="Timer" to="TimerUI" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="TimerUI" method="OnTimerTimeout"]
