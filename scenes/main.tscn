@@ -21,8 +21,9 @@ texture = ExtResource("2_nr21c")
 
 [node name="Dot" parent="." instance=ExtResource("1_fbtx0")]
 position = Vector2(488, 347)
+collision_mask = 3
 mass = 0.1
-linear_velocity = Vector2(8, 4)
+linear_velocity = Vector2(6, 4)
 
 [node name="ScoreUI" parent="." instance=ExtResource("5_kfdmy")]
 
@@ -49,7 +50,8 @@ position = Vector2(19, 21)
 shape = SubResource("RectangleShape2D_lvpj6")
 
 [node name="Guard1" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
-position = Vector2(903, 556)
+position = Vector2(929, 556)
+collision_layer = 2
 upAction = "g1_move_up"
 downAction = "g1_move_down"
 speed = 500.0
@@ -57,6 +59,7 @@ speed = 500.0
 [node name="Guard2" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
 position = Vector2(33, 150)
 rotation = 3.14159
+collision_layer = 2
 upAction = "g2_move_up"
 downAction = "g2_move_down"
 speed = 500.0
@@ -78,6 +81,7 @@ process_callback = 0
 autostart = true
 
 [connection signal="LeftUpdate" from="." to="ScoreUI" method="UpdateLeftScore"]
+[connection signal="Respawn" from="." to="Dot" method="Respawn"]
 [connection signal="RightUpdate" from="." to="ScoreUI" method="UpdateRightScore"]
 [connection signal="Goal" from="GoalAreaLeft" to="." method="OnGoalAreaLeft"]
 [connection signal="Goal" from="GoalAreaRight" to="." method="OnGoalAreaRight"]

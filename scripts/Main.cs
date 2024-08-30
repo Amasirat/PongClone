@@ -5,6 +5,8 @@ public partial class Main : Node2D
     public delegate void RightUpdateEventHandler();
     [Signal]
     public delegate void LeftUpdateEventHandler();
+    [Signal]
+    public delegate void RespawnEventHandler(Vector2 pos);
 
     public override void _Ready()
     {
@@ -27,8 +29,7 @@ public partial class Main : Node2D
 
     public void RespawnDot()
     {
-        var dot = GetNode<Node2D>("Dot");
-        dot.Position = dotPosition.Position;
+        EmitSignal(SignalName.Respawn, dotPosition.Position);
     }
 
     private Marker2D dotPosition;

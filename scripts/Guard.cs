@@ -8,7 +8,7 @@ public partial class Guard : StaticBody2D
         {
             direction = -1;
         }
-
+        
         if(Input.IsActionPressed(downAction))
         {
             direction = 1;

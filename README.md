@@ -18,4 +18,3 @@ Shake and Roll Dice Sound Effect: [**Mike Koenig**](https://soundbible.com/182-S
 
 ## License
 [The MIT License](https://opensource.org/license/mit)
-
