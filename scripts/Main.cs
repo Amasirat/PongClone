@@ -6,7 +6,7 @@ public partial class Main : Node2D
     [Signal]
     public delegate void LeftUpdateEventHandler();
     [Signal]
-    public delegate void RespawnEventHandler(Vector2 pos);
+    public delegate void RespawnEventHandler(Vector2 pos, int direction);
 
     public override void _Ready()
     {
@@ -18,21 +18,24 @@ public partial class Main : Node2D
     public void OnGoalAreaLeft()
     {
         EmitSignal(SignalName.LeftUpdate);
+        dotDirection = -1;
         delay.Start();
     }
 
     public void OnGoalAreaRight()
     {
         EmitSignal(SignalName.RightUpdate);
+        dotDirection = 1;
         delay.Start();
     }
 
     public void RespawnDot()
     {
-        EmitSignal(SignalName.Respawn, dotPosition.Position);
+        EmitSignal(SignalName.Respawn, dotPosition.Position, dotDirection);
     }
 
     private Marker2D dotPosition;
     private Timer delay;
     private Timer timer;
+    private int dotDirection;
 }

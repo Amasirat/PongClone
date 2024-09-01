@@ -26,9 +26,10 @@ public partial class Dot : RigidBody2D
         }
     }
 
-    public void Respawn(Vector2 pos)
+    public void Respawn(Vector2 pos, int direction)
     {
-        LinearVelocity = InitialVelocity;
+        Vector2 velocity = new Vector2(InitialVelocity.X * direction, InitialVelocity.Y);
+        LinearVelocity = velocity;
         Position = pos;
     }
     // Get applicable force from the given velocity. Used to give to ApplyForce to Speed up dot.

@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://f1d4fsylnjs1"]
+[gd_scene load_steps=6 format=3 uid="uid://f1d4fsylnjs1"]
 
 [ext_resource type="Texture2D" uid="uid://c0qj5q030cg28" path="res://assets/art/background.jpg" id="1_hayod"]
+[ext_resource type="Shader" path="res://scripts/shaders/main_menu.gdshader" id="1_pr6rv"]
 [ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="2_80e61"]
 [ext_resource type="PackedScene" uid="uid://cjgk3fun3tkhm" path="res://scenes/boundary.tscn" id="3_ij62f"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qohv4"]
+shader = ExtResource("1_pr6rv")
+shader_parameter/lod = 0.0
+
 [node name="MainMenu" type="Control"]
+material = SubResource("ShaderMaterial_qohv4")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
