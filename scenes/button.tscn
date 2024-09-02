@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbxr0wamjxq62"]
+
+[ext_resource type="FontFile" uid="uid://dmkpn1jvp270u" path="res://assets/fonts/New_Amsterdam/NewAmsterdam-Regular.ttf" id="1_l6013"]
+
+[node name="Button" type="Button"]
+offset_right = 256.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("1_l6013")
+theme_override_font_sizes/font_size = 45
+toggle_mode = true
+text = "Start"

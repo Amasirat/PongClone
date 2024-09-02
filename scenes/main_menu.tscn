@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://f1d4fsylnjs1"]
+[gd_scene load_steps=9 format=3 uid="uid://f1d4fsylnjs1"]
 
 [ext_resource type="Texture2D" uid="uid://c0qj5q030cg28" path="res://assets/art/background.jpg" id="1_hayod"]
 [ext_resource type="Shader" path="res://scripts/shaders/main_menu.gdshader" id="1_pr6rv"]
 [ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="2_80e61"]
+[ext_resource type="Script" path="res://scripts/MainMenu.cs" id="2_acom0"]
 [ext_resource type="PackedScene" uid="uid://cjgk3fun3tkhm" path="res://scenes/boundary.tscn" id="3_ij62f"]
+[ext_resource type="FontFile" uid="uid://dmkpn1jvp270u" path="res://assets/fonts/New_Amsterdam/NewAmsterdam-Regular.ttf" id="5_a1itb"]
+[ext_resource type="PackedScene" uid="uid://dbxr0wamjxq62" path="res://scenes/button.tscn" id="6_yqrmc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qohv4"]
 shader = ExtResource("1_pr6rv")
@@ -17,27 +20,81 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_acom0")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 3505.0
+offset_bottom = 2479.0
 texture = ExtResource("1_hayod")
+
+[node name="Title" type="Label" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -888.0
+offset_top = -256.0
+offset_right = -598.0
+offset_bottom = -165.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_a1itb")
+theme_override_font_sizes/font_size = 75
+text = "Pong Clone"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Dot" parent="." instance=ExtResource("2_80e61")]
 position = Vector2(495, 357)
 InitialVelocity = Vector2(4, 4)
 Sound = false
 
-[node name="UpperBoundary" parent="." instance=ExtResource("3_ij62f")]
+[node name="MainButtons" type="Node" parent="."]
 
-[node name="LeftBoundary" parent="." instance=ExtResource("3_ij62f")]
+[node name="StartButton" parent="MainButtons" instance=ExtResource("6_yqrmc")]
+offset_left = 40.0
+offset_top = 304.0
+offset_right = 296.0
+offset_bottom = 392.0
+
+[node name="SettingsButton" parent="MainButtons" instance=ExtResource("6_yqrmc")]
+offset_left = 40.0
+offset_top = 408.0
+offset_right = 296.0
+offset_bottom = 496.0
+text = "Settings"
+
+[node name="ExitSettings" parent="MainButtons" instance=ExtResource("6_yqrmc")]
+offset_left = 40.0
+offset_top = 512.0
+offset_right = 296.0
+offset_bottom = 600.0
+text = "Exit
+"
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="UpperBoundary" parent="Boundaries" instance=ExtResource("3_ij62f")]
+
+[node name="LeftBoundary" parent="Boundaries" instance=ExtResource("3_ij62f")]
 position = Vector2(962, -124)
 rotation = 1.5708
 
-[node name="RightBoundary" parent="." instance=ExtResource("3_ij62f")]
+[node name="RightBoundary" parent="Boundaries" instance=ExtResource("3_ij62f")]
 position = Vector2(-27, -110)
 rotation = 1.5708
 
-[node name="LowerBoundary" parent="." instance=ExtResource("3_ij62f")]
+[node name="LowerBoundary" parent="Boundaries" instance=ExtResource("3_ij62f")]
 position = Vector2(3, 745)
+
+[node name="SettingsButtons" type="Node" parent="."]
+
+[connection signal="pressed" from="MainButtons/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="MainButtons/SettingsButton" to="." method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="MainButtons/ExitSettings" to="." method="OnExitButtonPressed"]
