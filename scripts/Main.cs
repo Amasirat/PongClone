@@ -15,23 +15,37 @@ public partial class Main : Node2D
         timer = GetNode<Timer>("Timer");
     }
     // Once the dot enters GoalArea, the main script sends a signal to the ScoreUI to change its values
-    public void OnGoalAreaLeft()
+    private void OnGoalAreaLeft()
     {
         EmitSignal(SignalName.LeftUpdate);
         dotDirection = -1;
         delay.Start();
     }
 
-    public void OnGoalAreaRight()
+    private void OnGoalAreaRight()
     {
         EmitSignal(SignalName.RightUpdate);
         dotDirection = 1;
         delay.Start();
     }
 
-    public void RespawnDot()
+    private void RespawnDot()
     {
         EmitSignal(SignalName.Respawn, dotPosition.Position, dotDirection);
+    }
+
+    private void OnTimerUIGameEnd()
+    {
+        GameEndPopUp popUp = GetNode<GameEndPopUp>("GameEndPopUp");
+        int rightScore = GetNode<ScoreUI>("ScoreUI").RightScore;
+        int leftScore = GetNode<ScoreUI>("ScoreUI").LeftScore;
+        popUp.UpdateScoreLabels(leftScore, rightScore);
+        popUp.Show();
+    }
+
+    private void OnPopUpAnotherGame()
+    {
+        GetTree().ReloadCurrentScene();
     }
 
     private Marker2D dotPosition;

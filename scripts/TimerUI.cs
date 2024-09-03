@@ -23,7 +23,9 @@ public partial class TimerUI : Control
         }
         UpdateLabels();
         if (minutes == EndTime)
+        {
             EmitSignal(SignalName.GameEnd);
+        }
     }
     // Update Label Text
     private void UpdateLabels()

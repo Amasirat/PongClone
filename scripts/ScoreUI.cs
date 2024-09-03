@@ -1,6 +1,4 @@
 using Godot;
-using System;
-
 public partial class ScoreUI : Control
 {
     public override void _Ready()
@@ -19,6 +17,16 @@ public partial class ScoreUI : Control
     {
         rightScore++;
         leftLabel.Text = rightScore.ToString();
+    }
+    
+    public int LeftScore
+    {
+        get { return leftScore; }
+    }
+
+    public int RightScore
+    {
+        get { return rightScore; }
     }
     private int leftScore { get; set; }
     private int rightScore { get; set; }

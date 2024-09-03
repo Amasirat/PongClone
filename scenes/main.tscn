@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dew225y4rby51"]
+[gd_scene load_steps=10 format=3 uid="uid://dew225y4rby51"]
 
 [ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="1_fbtx0"]
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_xd1ko"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dx2fljytesr71" path="res://scenes/score_ui.tscn" id="5_kfdmy"]
 [ext_resource type="PackedScene" uid="uid://claudxyqvp1cm" path="res://scenes/timer_ui.tscn" id="6_2nt4e"]
 [ext_resource type="PackedScene" uid="uid://cjgk3fun3tkhm" path="res://scenes/boundary.tscn" id="6_aqcor"]
+[ext_resource type="PackedScene" uid="uid://cb65r76ndwust" path="res://scenes/game_end_pop_up.tscn" id="9_gtr6m"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xd1ko")
@@ -32,11 +33,12 @@ offset_left = 343.0
 offset_top = -4.0
 offset_right = 343.0
 offset_bottom = -4.0
+EndTime = 2
 
 [node name="UpperBoundary" parent="." instance=ExtResource("6_aqcor")]
 
 [node name="LowerBoundary" parent="." instance=ExtResource("6_aqcor")]
-position = Vector2(-3, 752)
+position = Vector2(-1, 743)
 
 [node name="Guard1" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
 position = Vector2(929, 556)
@@ -54,10 +56,10 @@ downAction = "g2_move_down"
 speed = 500.0
 
 [node name="GoalAreaLeft" parent="." instance=ExtResource("4_kdojg")]
-position = Vector2(-3, -25)
+position = Vector2(7, -28)
 
 [node name="GoalAreaRight" parent="." instance=ExtResource("4_kdojg")]
-position = Vector2(1196, -61)
+position = Vector2(1194, -64)
 
 [node name="RespawnDelay" type="Timer" parent="."]
 one_shot = true
@@ -69,10 +71,15 @@ position = Vector2(488, 347)
 process_callback = 0
 autostart = true
 
+[node name="GameEndPopUp" parent="." instance=ExtResource("9_gtr6m")]
+visible = false
+
 [connection signal="LeftUpdate" from="." to="ScoreUI" method="UpdateLeftScore"]
 [connection signal="Respawn" from="." to="Dot" method="Respawn"]
 [connection signal="RightUpdate" from="." to="ScoreUI" method="UpdateRightScore"]
+[connection signal="GameEnd" from="TimerUI" to="." method="OnTimerUIGameEnd"]
 [connection signal="Goal" from="GoalAreaLeft" to="." method="OnGoalAreaLeft"]
 [connection signal="Goal" from="GoalAreaRight" to="." method="OnGoalAreaRight"]
 [connection signal="timeout" from="RespawnDelay" to="." method="RespawnDot"]
 [connection signal="timeout" from="Timer" to="TimerUI" method="OnTimerTimeout"]
+[connection signal="AnotherGame" from="GameEndPopUp" to="." method="OnPopUpAnotherGame"]
