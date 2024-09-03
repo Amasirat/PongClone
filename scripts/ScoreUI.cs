@@ -6,30 +6,20 @@ public partial class ScoreUI : Control
         rightLabel = GetNode<Label>("RightScore");
         leftLabel = GetNode<Label>("LeftScore");
     }
-    // Increasing the Left score means the right has advantage, therefore the score of the RightLabel must increase
     public void UpdateLeftScore()
     {
-        leftScore++;
-        rightLabel.Text = leftScore.ToString();
+        LeftScore++;
+        leftLabel.Text = LeftScore.ToString();
     }
-    // Reverse is true here
     public void UpdateRightScore()
     {
-        rightScore++;
-        leftLabel.Text = rightScore.ToString();
+        RightScore++;
+        rightLabel.Text = RightScore.ToString();
     }
     
-    public int LeftScore
-    {
-        get { return leftScore; }
-    }
-
-    public int RightScore
-    {
-        get { return rightScore; }
-    }
-    private int leftScore { get; set; }
-    private int rightScore { get; set; }
+    public int LeftScore { get; set; }
+    public int RightScore { get; set; }
+    
     private Label rightLabel;
     private Label leftLabel;
 }

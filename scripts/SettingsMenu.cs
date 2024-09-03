@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 public partial class SettingsMenu : Control
 {
-    public override void _Ready()
-    {
-        
-    }
-    
     public void OnBackButtonPressed()
     {
         GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
@@ -15,7 +10,7 @@ public partial class SettingsMenu : Control
 
     public void OnApplyButtonPressed()
     {
-        GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
+        GetTree().ReloadCurrentScene();
     }
 
     public void OnFullscreenToggled(bool isFullscreen)

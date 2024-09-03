@@ -17,14 +17,16 @@ public partial class Main : Node2D
     // Once the dot enters GoalArea, the main script sends a signal to the ScoreUI to change its values
     private void OnGoalAreaLeft()
     {
-        EmitSignal(SignalName.LeftUpdate);
+        EmitSignal(SignalName.RightUpdate);
+        // for respawing the dot correctly. Records the direction the dot went into the goal area
         dotDirection = -1;
         delay.Start();
     }
 
     private void OnGoalAreaRight()
     {
-        EmitSignal(SignalName.RightUpdate);
+        EmitSignal(SignalName.LeftUpdate);
+        // for respawing the dot correctly. Records the direction the dot went into the goal area
         dotDirection = 1;
         delay.Start();
     }
