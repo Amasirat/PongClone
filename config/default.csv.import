@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cfvxsqsgiqmsh"
+
+[deps]
+
+files=["res://config/default. 920x720.translation"]
+
+source_file="res://config/default.csv"
+dest_files=["res://config/default. 920x720.translation"]
+
+[params]
+
+compress=true
+delimiter=0

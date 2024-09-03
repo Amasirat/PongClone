@@ -93,8 +93,6 @@ rotation = 1.5708
 [node name="LowerBoundary" parent="Boundaries" instance=ExtResource("3_ij62f")]
 position = Vector2(3, 745)
 
-[node name="SettingsButtons" type="Node" parent="."]
-
 [connection signal="pressed" from="MainButtons/StartButton" to="." method="OnStartButtonPressed"]
 [connection signal="pressed" from="MainButtons/SettingsButton" to="." method="OnSettingsButtonPressed"]
 [connection signal="pressed" from="MainButtons/ExitSettings" to="." method="OnExitButtonPressed"]
