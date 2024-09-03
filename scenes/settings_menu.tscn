@@ -56,6 +56,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nhbqd")
+configPath = "user://config.csv"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -206,6 +207,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LeftUpIcon" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 760.0
 offset_top = 344.0
 offset_right = 810.0
@@ -213,6 +215,7 @@ offset_bottom = 394.0
 texture = ExtResource("6_4wa67")
 
 [node name="LeftDownIcon" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 896.0
 offset_top = 344.0
 offset_right = 946.0
@@ -220,6 +223,7 @@ offset_bottom = 394.0
 texture = ExtResource("7_skqe0")
 
 [node name="RightDownIcon" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 896.0
 offset_top = 432.0
 offset_right = 946.0
@@ -227,24 +231,14 @@ offset_bottom = 482.0
 texture = ExtResource("8_nigiq")
 
 [node name="RightUpIcon" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 760.0
 offset_top = 432.0
 offset_right = 810.0
 offset_bottom = 482.0
 texture = ExtResource("9_5t2ir")
 
-[node name="GuardSprite" type="Sprite2D" parent="."]
-position = Vector2(40, 632)
-scale = Vector2(5.183, 9)
-texture = ExtResource("9_ccqpj")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GuardSprite"]
-libraries = {
-"": SubResource("AnimationLibrary_tinau")
-}
-autoplay = "transform_animation"
-
-[node name="OptionButton" type="OptionButton" parent="."]
+[node name="ResolutionButton" type="OptionButton" parent="."]
 layout_mode = 0
 offset_left = 776.0
 offset_top = 104.0
@@ -279,6 +273,17 @@ popup/item_4/text = "15"
 popup/item_4/id = 4
 popup/item_5/text = "20"
 popup/item_5/id = 5
+
+[node name="GuardSprite" type="Sprite2D" parent="."]
+position = Vector2(40, 632)
+scale = Vector2(5.183, 9)
+texture = ExtResource("9_ccqpj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GuardSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_tinau")
+}
+autoplay = "transform_animation"
 
 [connection signal="pressed" from="ApplyButton" to="." method="OnApplyButtonPressed"]
 [connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]

@@ -43,16 +43,16 @@ position = Vector2(-1, 743)
 [node name="Guard1" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
 position = Vector2(929, 556)
 collision_layer = 2
-upAction = "g1_move_up"
-downAction = "g1_move_down"
+upAction = "arrow_move_up"
+downAction = "arrow_move_down"
 speed = 500.0
 
 [node name="Guard2" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
 position = Vector2(33, 150)
 rotation = 3.14159
 collision_layer = 2
-upAction = "g2_move_up"
-downAction = "g2_move_down"
+upAction = "wasd_move_up"
+downAction = "wasd_move_down"
 speed = 500.0
 
 [node name="GoalAreaLeft" parent="." instance=ExtResource("4_kdojg")]

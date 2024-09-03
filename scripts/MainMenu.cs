@@ -24,6 +24,7 @@ public partial class MainMenu : Control
         file.Close();
         config.Close();
     }
+    
     // Button Event methods
     private void OnExitButtonPressed()
     {
