@@ -205,30 +205,28 @@ text = "Down
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Icons" type="Node" parent="."]
-
-[node name="LeftUpIcon" type="TextureRect" parent="Icons"]
+[node name="LeftUpIcon" type="TextureRect" parent="."]
 offset_left = 760.0
 offset_top = 344.0
 offset_right = 810.0
 offset_bottom = 394.0
 texture = ExtResource("6_4wa67")
 
-[node name="LeftDownIcon" type="TextureRect" parent="Icons"]
+[node name="LeftDownIcon" type="TextureRect" parent="."]
 offset_left = 896.0
 offset_top = 344.0
 offset_right = 946.0
 offset_bottom = 394.0
 texture = ExtResource("7_skqe0")
 
-[node name="RightDownIcon" type="TextureRect" parent="Icons"]
+[node name="RightDownIcon" type="TextureRect" parent="."]
 offset_left = 896.0
 offset_top = 432.0
 offset_right = 946.0
 offset_bottom = 482.0
 texture = ExtResource("8_nigiq")
 
-[node name="RightUpIcon" type="TextureRect" parent="Icons"]
+[node name="RightUpIcon" type="TextureRect" parent="."]
 offset_left = 760.0
 offset_top = 432.0
 offset_right = 810.0
