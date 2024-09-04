@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Godot;
 using FileAccess = Godot.FileAccess;
 
@@ -18,9 +20,6 @@ public partial class SettingsMenu : Control
                 GD.Print("Recieved unexpected amount of attributes in user://config.csv");;
             switch (line[0])
             {
-                case "resolution":
-                    SelectResolution(line[1]);
-                    break;
                 case "fullscreen":
                     bool isFullscreen = bool.Parse(line[1]);
                     GetNode<CheckButton>("Fullscreen").ButtonPressed = isFullscreen;
@@ -40,31 +39,7 @@ public partial class SettingsMenu : Control
         }
         config.Close();
     }
-
-    private void SelectResolution(string resolution)
-    {
-        var resolutionOptions = GetNode<OptionButton>("ResolutionButton");
-        switch (resolution)
-        { // the space is necessary because the csv writer puts space after delimiter which makes switch mapping fail.
-            case " 1920x1440":
-                resolutionOptions.Selected = 0;
-                break;
-            case " 1280x720":
-                resolutionOptions.Selected = 1;
-                break;
-            case " 920x720":
-                resolutionOptions.Selected = 2;
-                break;
-            case " 480x320":
-                resolutionOptions.Selected = 3;
-                break;
-            default:
-                resolutionOptions.Selected = -1;
-                GD.Print("Unsupported resolution");
-                break;
-        }
-    }
-
+    
     private void SelectTimeLimit(string timelimit)
     {
         int minute = int.Parse(timelimit);
@@ -109,20 +84,38 @@ public partial class SettingsMenu : Control
 
     private void UploadStateToConfig()
     {
-        var config = FileAccess.Open(configPath, FileAccess.ModeFlags.Write);
+        // the game can not tolerate unset time limit
+        if (GetNode<OptionButton>("TimeInput").Selected == -1)
+            throw new Exception("There is no selected option");
         
-        // todo: rewriting config with the states held within the button components
+        // assemble all states in control of the settings menu into one dictionary
+        Dictionary<string, string> states = new Dictionary<string, string>();
+        states.Add("fullscreen", fullscreen.ToString().ToLower());
+        states.Add("time_limit", GetNode<OptionButton>("TimeInput").Text);
+        states.Add("revert_controls", revertControls.ToString().ToLower());
+        
+        UpdateConfigState(states);
+    }
+
+    private void UpdateConfigState(Dictionary<string, string> states)
+    {
+        if (!FileAccess.FileExists(configPath))
+        {
+            throw new Exception("config file is corrupted or does not exist. You can delete any remnant of the config and " +
+                                "try relaunching the game to generate new default configuration");
+        }
+        using var config = FileAccess.Open(configPath, FileAccess.ModeFlags.Write);
+        foreach (var kvp in states)
+        {
+            string[] line = { kvp.Key, kvp.Value };
+            config.StoreCsvLine(line);
+        }
         
         config.Close();
     }
     public void OnFullscreenToggled(bool isFullscreen)
     {
-        Window window = new Window();
-        if (isFullscreen)
-        {
-            window.Mode = Window.ModeEnum.Fullscreen;
-        }
-        window.Mode = Window.ModeEnum.Windowed;
+        fullscreen = isFullscreen;
     }
 
     private void OnMovementExchangeToggled(bool isToggled)
@@ -135,6 +128,7 @@ public partial class SettingsMenu : Control
         {
             MakeShowRightArrowed();
         }
+        revertControls = isToggled;
     }
 
     private void MakeShowRightWASD()
@@ -173,6 +167,4 @@ public partial class SettingsMenu : Control
 
     private bool fullscreen;
     private bool revertControls;
-    private string resolution;
-    private int timeLimit;
 }

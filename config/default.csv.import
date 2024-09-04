@@ -6,10 +6,10 @@ uid="uid://cfvxsqsgiqmsh"
 
 [deps]
 
-files=["res://config/default. 920x720.translation"]
+files=["res://config/default. false.translation"]
 
 source_file="res://config/default.csv"
-dest_files=["res://config/default. 920x720.translation"]
+dest_files=["res://config/default. false.translation"]
 
 [params]
 

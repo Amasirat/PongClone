@@ -127,16 +127,6 @@ theme_override_font_sizes/font_size = 30
 text = "Game Time Limit"
 vertical_alignment = 1
 
-[node name="Resolution" type="Label" parent="Labels"]
-offset_left = 512.0
-offset_top = 104.0
-offset_right = 692.0
-offset_bottom = 147.0
-theme_override_fonts/font = ExtResource("5_78whe")
-theme_override_font_sizes/font_size = 30
-text = "Resolution"
-vertical_alignment = 1
-
 [node name="RightGuard" type="Label" parent="Labels"]
 offset_left = 512.0
 offset_top = 352.0
@@ -237,22 +227,6 @@ offset_top = 432.0
 offset_right = 810.0
 offset_bottom = 482.0
 texture = ExtResource("9_5t2ir")
-
-[node name="ResolutionButton" type="OptionButton" parent="."]
-layout_mode = 0
-offset_left = 776.0
-offset_top = 104.0
-offset_right = 944.0
-offset_bottom = 135.0
-selected = 2
-item_count = 4
-popup/item_0/text = "1920x1440"
-popup/item_1/text = "1280x720"
-popup/item_1/id = 1
-popup/item_2/text = "920x720"
-popup/item_2/id = 2
-popup/item_3/text = "480x320"
-popup/item_3/id = 3
 
 [node name="TimeInput" type="OptionButton" parent="."]
 layout_mode = 0
