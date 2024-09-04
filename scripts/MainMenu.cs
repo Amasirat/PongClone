@@ -7,6 +7,11 @@ public partial class MainMenu : Control
     {
         CreateUserConfig();
     }
+
+    private void CheckApplyWindow(bool isFullscreen)
+    {
+        
+    }
 // a one time method to create a personal config file for the current user
     private void CreateUserConfig()
     {

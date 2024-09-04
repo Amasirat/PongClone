@@ -113,9 +113,17 @@ public partial class SettingsMenu : Control
         
         config.Close();
     }
+    // todo: fullscreen doesn't work after re-opening game 
     public void OnFullscreenToggled(bool isFullscreen)
     {
         fullscreen = isFullscreen;
+        
+        if(isFullscreen)
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+        else
+        {
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+        }
     }
 
     private void OnMovementExchangeToggled(bool isToggled)
