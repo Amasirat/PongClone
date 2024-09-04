@@ -12,6 +12,7 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xd1ko")
+configPath = "user://config.csv"
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 3508.0
@@ -40,14 +41,14 @@ EndTime = 0
 [node name="LowerBoundary" parent="." instance=ExtResource("6_aqcor")]
 position = Vector2(-1, 743)
 
-[node name="Guard1" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
+[node name="RightGuard" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
 position = Vector2(929, 556)
 collision_layer = 2
 upAction = "arrow_move_up"
 downAction = "arrow_move_down"
 speed = 500.0
 
-[node name="Guard2" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
+[node name="LeftGuard" parent="." groups=["Guards"] instance=ExtResource("3_gdmqw")]
 position = Vector2(33, 150)
 rotation = 3.14159
 collision_layer = 2
