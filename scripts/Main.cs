@@ -23,7 +23,7 @@ public partial class Main : Node2D
     public override void _Ready()
     {
         InitializeReferenceNodes();
-        ApplyConfigStates();
+        // ApplyConfigStates();
     }
     // do all code references of main's child nodes here, meant to be called from _Ready method
     private void InitializeReferenceNodes()
@@ -67,6 +67,7 @@ public partial class Main : Node2D
     
     private void OnTimerUIGameEnd()
     {
+        GetTree().Paused = true;
         GameEndPopUp popUp = GetNode<GameEndPopUp>("GameEndPopUp");
         int rightScore = GetNode<ScoreUI>("ScoreUI").RightScore;
         int leftScore = GetNode<ScoreUI>("ScoreUI").LeftScore;

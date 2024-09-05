@@ -9,7 +9,6 @@ public partial class GameEndPopUp : Control
         leftScoreLabel = GetNode<Label>("LeftScore");
         winLabel = GetNode<Label>("WinLabel");
     }
-    
     public void UpdateScoreLabels(int leftScore, int rightScore)
     {
         if (leftScore > rightScore)
@@ -31,11 +30,14 @@ public partial class GameEndPopUp : Control
 
     private void OnRejectPressed()
     {
+        GetTree().Paused = false;
+        GD.Print("Reject");
         GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
     }
 
     private void OnConfirmPressed()
     {
+        GetTree().Paused = false;
         EmitSignal(SignalName.AnotherGame);
         Hide();
     }

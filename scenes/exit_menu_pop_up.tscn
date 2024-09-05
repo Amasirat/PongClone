@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://hhlknftgqhnc"]
+
+[ext_resource type="Script" path="res://scripts/ExitMenuPopUp.cs" id="1_ywjgf"]
+[ext_resource type="FontFile" uid="uid://dmkpn1jvp270u" path="res://assets/fonts/New_Amsterdam/NewAmsterdam-Regular.ttf" id="2_nsyxu"]
+[ext_resource type="PackedScene" uid="uid://dbxr0wamjxq62" path="res://scenes/button.tscn" id="3_s2yqy"]
+
+[node name="GameEndPopUp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ywjgf")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 146.0
+offset_right = 768.0
+offset_bottom = 423.0
+
+[node name="Reject" parent="." instance=ExtResource("3_s2yqy")]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 320.0
+offset_right = 408.0
+offset_bottom = 383.0
+theme_override_font_sizes/font_size = 35
+text = "No"
+
+[node name="Confirm" parent="." instance=ExtResource("3_s2yqy")]
+process_mode = 3
+layout_mode = 0
+offset_left = 536.0
+offset_top = 320.0
+offset_right = 664.0
+offset_bottom = 383.0
+theme_override_font_sizes/font_size = 35
+text = "Yes"
+
+[node name="PromptLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 192.0
+offset_right = 701.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("2_nsyxu")
+theme_override_font_sizes/font_size = 45
+text = "Exit to Main Menu?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Reject" to="." method="OnRejectPressed"]
+[connection signal="pressed" from="Confirm" to="." method="OnConfirmPressed"]

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dbxr0wamjxq62" path="res://scenes/button.tscn" id="3_fkshx"]
 
 [node name="GameEndPopUp" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

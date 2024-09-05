@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dew225y4rby51"]
+[gd_scene load_steps=11 format=3 uid="uid://dew225y4rby51"]
 
 [ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="1_fbtx0"]
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_xd1ko"]
@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://claudxyqvp1cm" path="res://scenes/timer_ui.tscn" id="6_2nt4e"]
 [ext_resource type="PackedScene" uid="uid://cjgk3fun3tkhm" path="res://scenes/boundary.tscn" id="6_aqcor"]
 [ext_resource type="PackedScene" uid="uid://cb65r76ndwust" path="res://scenes/game_end_pop_up.tscn" id="9_gtr6m"]
+[ext_resource type="PackedScene" uid="uid://hhlknftgqhnc" path="res://scenes/exit_menu_pop_up.tscn" id="10_2r7r3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xd1ko")
-configPath = "user://config.csv"
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 3508.0
@@ -73,6 +73,9 @@ process_callback = 0
 autostart = true
 
 [node name="GameEndPopUp" parent="." instance=ExtResource("9_gtr6m")]
+visible = false
+
+[node name="ExitMenuPopUp" parent="." instance=ExtResource("10_2r7r3")]
 visible = false
 
 [connection signal="LeftUpdate" from="." to="ScoreUI" method="UpdateLeftScore"]
