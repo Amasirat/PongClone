@@ -27,7 +27,7 @@ public partial class Main : Node2D
         InitializeReferenceNodes();
         ApplyConfigStates();
     }
-
+    
     public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("exit"))

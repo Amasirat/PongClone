@@ -7,7 +7,7 @@
 size = Vector2(153, 23)
 
 [node name="Guard" type="StaticBody2D"]
-position = Vector2(888, 257)
+position = Vector2(-1, -132)
 script = ExtResource("1_bnlhm")
 metadata/_edit_group_ = true
 
