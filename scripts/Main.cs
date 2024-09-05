@@ -20,10 +20,20 @@ public partial class Main : Node2D
     [Signal]
     public delegate void RespawnEventHandler(Vector2 pos, int direction);
 
+    [Signal]
+    public delegate void ExitEventHandler();
     public override void _Ready()
     {
         InitializeReferenceNodes();
-        // ApplyConfigStates();
+        ApplyConfigStates();
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("exit"))
+        {
+            EmitSignal(SignalName.Exit);
+        }
     }
     // do all code references of main's child nodes here, meant to be called from _Ready method
     private void InitializeReferenceNodes()

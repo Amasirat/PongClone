@@ -3,14 +3,21 @@ using System;
 
 public partial class ExitMenuPopUp : Control
 {
-    public void OnRejectPressed()
+    private void OnRejectPressed()
     {
+        GetTree().Paused = false;
         Hide();
     }
 
-    public void OnConfirmPressed()
+    private void OnConfirmPressed()
     {
+        GetTree().Paused = false;
         GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
     }
-    
+
+    private void OnMainExitPressed()
+    {
+        GetTree().Paused = true;
+        Show();
+    }
 }

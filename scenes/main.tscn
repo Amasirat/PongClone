@@ -78,6 +78,7 @@ visible = false
 [node name="ExitMenuPopUp" parent="." instance=ExtResource("10_2r7r3")]
 visible = false
 
+[connection signal="Exit" from="." to="ExitMenuPopUp" method="OnMainExitPressed"]
 [connection signal="LeftUpdate" from="." to="ScoreUI" method="UpdateLeftScore"]
 [connection signal="Respawn" from="." to="Dot" method="Respawn"]
 [connection signal="RightUpdate" from="." to="ScoreUI" method="UpdateRightScore"]

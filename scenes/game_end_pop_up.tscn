@@ -69,18 +69,18 @@ vertical_alignment = 1
 
 [node name="Reject" parent="." instance=ExtResource("3_fkshx")]
 layout_mode = 0
-offset_left = 576.0
+offset_left = 272.0
 offset_top = 448.0
-offset_right = 704.0
+offset_right = 400.0
 offset_bottom = 511.0
 theme_override_font_sizes/font_size = 35
 text = "No"
 
 [node name="Confirm" parent="." instance=ExtResource("3_fkshx")]
 layout_mode = 0
-offset_left = 256.0
+offset_left = 552.0
 offset_top = 448.0
-offset_right = 384.0
+offset_right = 680.0
 offset_bottom = 511.0
 theme_override_font_sizes/font_size = 35
 text = "Yes"

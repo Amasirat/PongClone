@@ -21,6 +21,7 @@ offset_right = 768.0
 offset_bottom = 423.0
 
 [node name="Reject" parent="." instance=ExtResource("3_s2yqy")]
+process_mode = 3
 layout_mode = 0
 offset_left = 280.0
 offset_top = 320.0

@@ -31,7 +31,6 @@ public partial class GameEndPopUp : Control
     private void OnRejectPressed()
     {
         GetTree().Paused = false;
-        GD.Print("Reject");
         GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
     }
 
@@ -41,6 +40,7 @@ public partial class GameEndPopUp : Control
         EmitSignal(SignalName.AnotherGame);
         Hide();
     }
+    
     private Label leftScoreLabel;
     private Label rightScoreLabel;
     private Label winLabel;
