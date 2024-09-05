@@ -79,7 +79,6 @@ public partial class SettingsMenu : Control
     public void OnApplyButtonPressed()
     {
         UploadStateToConfig();
-        GetTree().ReloadCurrentScene();
     }
 
     private void UploadStateToConfig()
