@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Godot;
-using FileAccess = Godot.FileAccess;
+using PongClone.scripts;
 
 public partial class SettingsMenu : Control
 {
@@ -12,39 +10,20 @@ public partial class SettingsMenu : Control
 
     private void ApplyConfigToSettingsMenu()
     {
-        var config = FileAccess.Open(configPath, FileAccess.ModeFlags.Read);
-        while (config.GetPosition() < config.GetLength())
-        {
-            string[] line = config.GetCsvLine();
-            if (line.Length == 0 || line.Length > 2)
-                GD.Print("Recieved unexpected amount of attributes in user://config.csv");;
-            switch (line[0])
-            {
-                case "fullscreen":
-                    bool isFullscreen = bool.Parse(line[1]);
-                    GetNode<CheckButton>("Fullscreen").ButtonPressed = isFullscreen;
-                    break;
-                case "time_limit":
-                    SelectTimeLimit(line[1]);
-                    break;
-                case "revert_controls":
-                    bool isReverted = bool.Parse(line[1]);
-                    GetNode<CheckButton>("MovementExchange").ButtonPressed = isReverted;
-                    break;
-                default:
-                    GD.Print("The config file is most likely corrupt, " +
-                             "if so delete the config file and restart the game.");
-                    break;
-            }
-        }
-        config.Close();
+        bool fullscreen = GameStateManager.Instance.Fullscreen;
+        bool revertControls = GameStateManager.Instance.RevertControls;
+        int timeLimit = GameStateManager.Instance.TimeLimit;
+        
+        // Apply states to settings
+        GetNode<CheckButton>("Fullscreen").ButtonPressed = fullscreen;
+        GetNode<CheckButton>("RevertControls").ButtonPressed = revertControls;
+        SelectTimeLimit(timeLimit);
     }
     
-    private void SelectTimeLimit(string timelimit)
+    private void SelectTimeLimit(int timelimit)
     {
-        int minute = int.Parse(timelimit);
         var timeOption = GetNode<OptionButton>("TimeInput");
-        switch (minute)
+        switch (timelimit)
         {
             case 2:
                 timeOption.Selected = 0;
@@ -70,62 +49,25 @@ public partial class SettingsMenu : Control
                 break;
         }
     }
-    
+    // When the Back button is pressed
     public void OnBackButtonPressed()
     {
         GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
     }
-
+// when the Apply button is pressed
     public void OnApplyButtonPressed()
     {
-        UploadStateToConfig();
+        // Change states
+        GameStateManager.Instance.TimeLimit = int.Parse(GetNode<OptionButton>("TimeInput").Text);
+        GameStateManager.Instance.RevertControls = GetNode<CheckButton>("RevertControls").ButtonPressed;
+        GameStateManager.Instance.Fullscreen = GetNode<CheckButton>("Fullscreen").ButtonPressed;
+        // Apply states
+        GameStateManager.Instance.UploadStateToConfig();
+        GameStateManager.Instance.CheckAndApplyFullscreen();
+        GetTree().ReloadCurrentScene();
     }
-
-    private void UploadStateToConfig()
-    {
-        // the game can not tolerate unset time limit
-        if (GetNode<OptionButton>("TimeInput").Selected == -1)
-            throw new Exception("There is no selected option");
-        
-        // assemble all states in control of the settings menu into one dictionary
-        Dictionary<string, string> states = new Dictionary<string, string>();
-        states.Add("fullscreen", fullscreen.ToString().ToLower());
-        states.Add("time_limit", GetNode<OptionButton>("TimeInput").Text);
-        states.Add("revert_controls", revertControls.ToString().ToLower());
-        
-        UpdateConfigState(states);
-    }
-
-    private void UpdateConfigState(Dictionary<string, string> states)
-    {
-        if (!FileAccess.FileExists(configPath))
-        {
-            throw new Exception("config file is corrupted or does not exist. You can delete any remnant of the config and " +
-                                "try relaunching the game to generate new default configuration");
-        }
-        using var config = FileAccess.Open(configPath, FileAccess.ModeFlags.Write);
-        foreach (var kvp in states)
-        {
-            string[] line = { kvp.Key, kvp.Value };
-            config.StoreCsvLine(line);
-        }
-        
-        config.Close();
-    }
-    // todo: fullscreen doesn't work after re-opening game 
-    public void OnFullscreenToggled(bool isFullscreen)
-    {
-        fullscreen = isFullscreen;
-        
-        if(isFullscreen)
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-        else
-        {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-        }
-    }
-
-    private void OnMovementExchangeToggled(bool isToggled)
+    // This method is only meant to update the frontend, state is only changed in OnApplyButtonPressed
+    private void OnRevertControlsToggled(bool isToggled)
     {
         if (isToggled)
         {
@@ -135,9 +77,12 @@ public partial class SettingsMenu : Control
         {
             MakeShowRightArrowed();
         }
-        revertControls = isToggled;
     }
+    
+////////// these methods only update control icons in the settings menu //////////////
+ ///////// Backend logic can use these methods to apply these updates /////////////
 
+// replace the right guard icons with WASD and left with the arrowed ones
     private void MakeShowRightWASD()
     {
         GetNode<TextureRect>("LeftUpIcon").
@@ -153,7 +98,7 @@ public partial class SettingsMenu : Control
             SetTexture(ResourceLoader.Load<Texture2D>(
                 "res://assets/icons/icons8-s-key-50.png"));
     }
-
+// replace the right guards with arrowed ones and left one with WASD controls
     private void MakeShowRightArrowed()
     {
         GetNode<TextureRect>("LeftUpIcon").
@@ -169,9 +114,4 @@ public partial class SettingsMenu : Control
             SetTexture(ResourceLoader.Load<Texture2D>(
                 "res://assets/icons/icons8-page-down-button-50.png"));
     }
-
-    [Export] public string configPath;
-
-    private bool fullscreen;
-    private bool revertControls;
 }

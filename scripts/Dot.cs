@@ -60,6 +60,5 @@ public partial class Dot : RigidBody2D
     [Export] public Vector2 InitialVelocity { get; set; }
     [Export] public float BoostAmount { get; set; }
     [Export] public bool Sound { get; set; } = true;
-    
     private AudioStreamPlayer2D soundPlayer;
 }

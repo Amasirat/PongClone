@@ -56,7 +56,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nhbqd")
-configPath = "user://config.csv"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -187,7 +186,7 @@ grow_vertical = 0
 text = "Back
 "
 
-[node name="MovementExchange" type="CheckButton" parent="."]
+[node name="RevertControls" type="CheckButton" parent="."]
 layout_mode = 0
 offset_left = 504.0
 offset_top = 280.0
@@ -261,5 +260,4 @@ popup/item_5/id = 5
 
 [connection signal="pressed" from="ApplyButton" to="." method="OnApplyButtonPressed"]
 [connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]
-[connection signal="toggled" from="MovementExchange" to="." method="OnMovementExchangeToggled"]
-[connection signal="toggled" from="Fullscreen" to="." method="OnFullscreenToggled"]
+[connection signal="toggled" from="RevertControls" to="." method="OnRevertControlsToggled"]

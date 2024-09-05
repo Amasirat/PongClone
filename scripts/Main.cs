@@ -1,6 +1,16 @@
-using System.Collections.Generic;
-using System.Linq;
 using Godot;
+using PongClone.scripts;
+/// <summary>
+/// The main script handles the ongoings of a Pong game session. It contains relevant children nodes
+/// and assigns references to them in InitializeReferenceNodes method.
+/// ApplyConfigStates uses the GameStateManager singleton to retrieve its stored states and apply them, I.E
+/// TimeLimit and revertControls.
+///
+/// Signals:
+///     RightUpdate: Orders ScoreUI to update the RightScore
+///     LeftUpdate: Orders ScoreUI to update the LeftScore
+///     Respawn: It orders the dot to respawn itself.
+/// </summary>
 public partial class Main : Node2D
 {
     [Signal]
@@ -13,8 +23,6 @@ public partial class Main : Node2D
     public override void _Ready()
     {
         InitializeReferenceNodes();
-        states = new Dictionary<string, string>();
-        DownloadConfigStates();
         ApplyConfigStates();
     }
     // do all code references of main's child nodes here, meant to be called from _Ready method
@@ -27,32 +35,11 @@ public partial class Main : Node2D
         leftGuard = GetNode<Guard>("LeftGuard");
         rightGuard = GetNode<Guard>("RightGuard");
     }
-
-    private void DownloadConfigStates()
-    {
-        var config = FileAccess.Open(configPath, FileAccess.ModeFlags.Read);
-        while (config.GetPosition() < config.GetLength())
-        {
-            var line = config.GetCsvLine();
-            switch (line[0])
-            {
-                // only these two states are relevant to the scene
-                case "time_limit":
-                    states.Add("time_limit", line[1]);
-                    break;
-                case "revert_controls":
-                    states.Add("revert_controls", line[1]);
-                    break;
-            }
-        }
-        config.Close();
-    }
-
     private void ApplyConfigStates()
     {
-        timerUI.EndTime = int.Parse(states["time_limit"]);
+        timerUI.EndTime = GameStateManager.Instance.TimeLimit;
         
-        if (bool.Parse(states["revert_controls"]))
+        if (GameStateManager.Instance.RevertControls)
         {
             leftGuard.upAction = "arrow_move_up";
             leftGuard.downAction = "arrow_move_down";
@@ -61,7 +48,6 @@ public partial class Main : Node2D
             rightGuard.downAction = "wasd_move_down";
         }
     }
-    
     // Once the dot enters GoalArea, the main script sends a signal to the ScoreUI to change its values
     private void OnGoalAreaLeft()
     {
@@ -78,12 +64,7 @@ public partial class Main : Node2D
         dotDirection = 1;
         delay.Start();
     }
-
-    private void RespawnDot()
-    {
-        EmitSignal(SignalName.Respawn, dotPosition.Position, dotDirection);
-    }
-
+    
     private void OnTimerUIGameEnd()
     {
         GameEndPopUp popUp = GetNode<GameEndPopUp>("GameEndPopUp");
@@ -97,9 +78,14 @@ public partial class Main : Node2D
     {
         GetTree().ReloadCurrentScene();
     }
+
+    private void RespawnDot()
+    {
+        EmitSignal(SignalName.Respawn, dotPosition.Position, dotDirection);
+    }
     
-    [Export] public string configPath;
     // references to children nodes
+    
     private Marker2D dotPosition;
     private Timer delay;
     private Timer timer;
@@ -107,6 +93,4 @@ public partial class Main : Node2D
     private int dotDirection;
     private Guard leftGuard;
     private Guard rightGuard; 
-    // holds data downloaded from user config file
-    private Dictionary<string, string> states;
 }
