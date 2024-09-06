@@ -10,10 +10,10 @@ public partial class GameStateManager : Node
     public override void _Ready()
     {
         Instance = this;
-        ConfigPath = "user://config.csv";
         if(!FileAccess.FileExists(ConfigPath))
             CreateUserConfig();
         DownloadStateFromConfig();
+        DownloadBestTime();
         // Apply the global fullscreen state to game
         CheckAndApplyFullscreen();
     }
@@ -29,33 +29,6 @@ public partial class GameStateManager : Node
             DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
         }
     }
-//     public void ChangeState(string stateKey, bool value)
-//     {
-//         switch (stateKey)
-//         {
-//             case "fullscreen":
-//                 Fullscreen = value;
-//                 break;
-//             case "revert_controls":
-//                 RevertControls = value;
-//                 break;
-//             default:
-//                 GD.Print("State is not found within GameStateManager");
-//                 break;
-//         }
-//     }
-// // overflow of the above with a int value type
-//     public void ChangeState(string stateKey, int value)
-//     {
-//         if (stateKey == "time_limit")
-//         {
-//             TimeLimit = value;
-//         }
-//         else
-//         {
-//             GD.Print("State is not found within GameStateManager");
-//         }
-//     }
     private void DownloadStateFromConfig()
     {
         var config = FileAccess.Open(ConfigPath, FileAccess.ModeFlags.Read);
@@ -105,10 +78,10 @@ public partial class GameStateManager : Node
     {
         // The user's config file is only created on the game's first launch,
         // the config should be created if it is for whatever reason deleted, otherwise it should skip
-        if (FileAccess.FileExists("user://config.csv")) return;
+        if (FileAccess.FileExists(ConfigPath)) return;
         
         var file = FileAccess.Open("res://config/default.csv", FileAccess.ModeFlags.Read);
-        var config = FileAccess.Open("user://config.csv", FileAccess.ModeFlags.Write);
+        var config = FileAccess.Open(ConfigPath, FileAccess.ModeFlags.Write);
         while (file.GetPosition() < file.GetLength())
         {
             var line = file.GetCsvLine();
@@ -117,8 +90,39 @@ public partial class GameStateManager : Node
         file.Close();
         config.Close();
     }
+
+    public void RecordBestTime(Vector2 bestTime)
+    {
+        if (bestTime > BestTime)
+        {
+            BestTime = bestTime;
+        }
+        CreateBestTimeRecord();
+    }
+
+    public void DownloadBestTime()
+    {
+        if (!FileAccess.FileExists(BestTimePath))
+        {
+            CreateBestTimeRecord();
+            return;
+        }
+        using var file = FileAccess.Open(BestTimePath, FileAccess.ModeFlags.Read);
+        
+    }
+
+    public void CreateBestTimeRecord()
+    {
+        using var file = FileAccess.Open(BestTimePath, FileAccess.ModeFlags.Write);
+        string[] line = { BestTime.X.ToString(), BestTime.Y.ToString() };
+        file.StoreCsvLine(line);
+        file.Close();
+    }
     public bool Fullscreen { get; set; }
     public bool RevertControls { get; set; }
     public int TimeLimit { get; set; }
-    private string ConfigPath;
+    public Vector2 BestTime { get; set; } = Vector2.Zero;
+    
+    private const string ConfigPath = "user://config.csv";
+    private const string BestTimePath = "user://best_time.csv";
 }

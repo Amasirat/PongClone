@@ -11,7 +11,7 @@ using PongClone.scripts;
 ///     LeftUpdate: Orders ScoreUI to update the LeftScore
 ///     Respawn: It orders the dot to respawn itself.
 /// </summary>
-public partial class Main : Node2D
+public partial class TwoPlayerLevel : Node2D
 {
     [Signal]
     public delegate void RightUpdateEventHandler();
@@ -19,7 +19,6 @@ public partial class Main : Node2D
     public delegate void LeftUpdateEventHandler();
     [Signal]
     public delegate void RespawnEventHandler(Vector2 pos, int direction);
-
     [Signal]
     public delegate void ExitEventHandler();
     public override void _Ready()
@@ -41,7 +40,7 @@ public partial class Main : Node2D
         dotPosition = GetNode<Marker2D>("DotPosition");
         delay = GetNode<Timer>("RespawnDelay");
         timer = GetNode<Timer>("Timer");
-        timerUI = GetNode<TimerUI>("TimerUI");
+        timerUI = GetNode<TwoPlayerTimerUI>("TimerUI");
         leftGuard = GetNode<Guard>("LeftGuard");
         rightGuard = GetNode<Guard>("RightGuard");
     }
@@ -100,7 +99,7 @@ public partial class Main : Node2D
     private Marker2D dotPosition;
     private Timer delay;
     private Timer timer;
-    private TimerUI timerUI;
+    private TwoPlayerTimerUI timerUI;
     private int dotDirection;
     private Guard leftGuard;
     private Guard rightGuard; 

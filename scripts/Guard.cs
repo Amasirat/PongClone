@@ -19,7 +19,7 @@ public partial class Guard : StaticBody2D
         }
 
         Vector2 pos = new Vector2(0, direction);
-        Position += pos * speed * (float)delta;
+        Position += pos * Speed * (float)delta;
         // Clamp the position of guard to not let it go out of views
         Position = new Vector2(
             x: Mathf.Clamp(Position.X, 0, screenSize.X),
@@ -31,6 +31,7 @@ public partial class Guard : StaticBody2D
     // It is meant make two player controls easier to configure
     [Export] public string upAction;
     [Export] public string downAction;
-    [Export] public float speed;
+    
+    private const float Speed = 600f;
     private Vector2 screenSize;
 }

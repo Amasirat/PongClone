@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://dew225y4rby51"]
+
+[ext_resource type="Script" path="res://scripts/TwoPlayerLevel.cs" id="1_fbjcf"]
+[ext_resource type="PackedScene" uid="uid://cj4wlr3xjporn" path="res://scenes/background.tscn" id="2_sjq5u"]
+[ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="3_qgrjr"]
+[ext_resource type="PackedScene" uid="uid://dx2fljytesr71" path="res://scenes/score_ui.tscn" id="4_mesak"]
+[ext_resource type="PackedScene" uid="uid://claudxyqvp1cm" path="res://scenes/timer_ui.tscn" id="5_3i1yp"]
+[ext_resource type="PackedScene" uid="uid://cjgk3fun3tkhm" path="res://scenes/boundary.tscn" id="6_7fgyc"]
+[ext_resource type="Script" path="res://scripts/TwoPlayerTimerUI.cs" id="6_8ao5g"]
+[ext_resource type="PackedScene" uid="uid://cusq2dbell4np" path="res://scenes/guard.tscn" id="7_mg1a4"]
+[ext_resource type="PackedScene" uid="uid://vn4vj6s2nqe0" path="res://scenes/goal_area.tscn" id="8_n8qu4"]
+[ext_resource type="PackedScene" uid="uid://cb65r76ndwust" path="res://scenes/game_end_pop_up.tscn" id="9_sh3mq"]
+[ext_resource type="PackedScene" uid="uid://hhlknftgqhnc" path="res://scenes/exit_menu_pop_up.tscn" id="10_e7abu"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_fbjcf")
+
+[node name="Background" parent="." instance=ExtResource("2_sjq5u")]
+
+[node name="Dot" parent="." instance=ExtResource("3_qgrjr")]
+position = Vector2(488, 347)
+collision_mask = 3
+mass = 0.1
+linear_velocity = Vector2(0, 0)
+InitialVelocity = Vector2(6, 4)
+BoostAmount = 0.6
+
+[node name="ScoreUI" parent="." instance=ExtResource("4_mesak")]
+offset_left = -10.0
+offset_top = 18.0
+offset_right = -10.0
+offset_bottom = 18.0
+
+[node name="TimerUI" parent="." instance=ExtResource("5_3i1yp")]
+offset_left = 330.0
+offset_top = -4.0
+offset_right = 343.0
+offset_bottom = -4.0
+script = ExtResource("6_8ao5g")
+EndTime = 0
+
+[node name="UpperBoundary" parent="." instance=ExtResource("6_7fgyc")]
+
+[node name="LowerBoundary" parent="." instance=ExtResource("6_7fgyc")]
+position = Vector2(-1, 743)
+
+[node name="RightGuard" parent="." groups=["Guards"] instance=ExtResource("7_mg1a4")]
+position = Vector2(929, 556)
+collision_layer = 2
+upAction = "arrow_move_up"
+downAction = "arrow_move_down"
+
+[node name="LeftGuard" parent="." groups=["Guards"] instance=ExtResource("7_mg1a4")]
+position = Vector2(33, 150)
+rotation = 3.14159
+collision_layer = 2
+upAction = "wasd_move_up"
+downAction = "wasd_move_down"
+
+[node name="GoalAreaLeft" parent="." instance=ExtResource("8_n8qu4")]
+position = Vector2(7, -28)
+
+[node name="GoalAreaRight" parent="." instance=ExtResource("8_n8qu4")]
+position = Vector2(1194, -64)
+
+[node name="RespawnDelay" type="Timer" parent="."]
+one_shot = true
+
+[node name="DotPosition" type="Marker2D" parent="."]
+position = Vector2(488, 347)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[node name="GameEndPopUp" parent="." instance=ExtResource("9_sh3mq")]
+visible = false
+
+[node name="ExitMenuPopUp" parent="." instance=ExtResource("10_e7abu")]
+visible = false
+
+[connection signal="Exit" from="." to="ExitMenuPopUp" method="OnMainExitPressed"]
+[connection signal="LeftUpdate" from="." to="ScoreUI" method="UpdateLeftScore"]
+[connection signal="Respawn" from="." to="Dot" method="Respawn"]
+[connection signal="RightUpdate" from="." to="ScoreUI" method="UpdateRightScore"]
+[connection signal="GameEnd" from="TimerUI" to="." method="OnTimerUIGameEnd"]
+[connection signal="Goal" from="GoalAreaLeft" to="." method="OnGoalAreaLeft"]
+[connection signal="Goal" from="GoalAreaRight" to="." method="OnGoalAreaRight"]
+[connection signal="timeout" from="RespawnDelay" to="." method="RespawnDot"]
+[connection signal="timeout" from="Timer" to="TimerUI" method="OnTimerTimeout"]
+[connection signal="AnotherGame" from="GameEndPopUp" to="." method="OnPopUpAnotherGame"]

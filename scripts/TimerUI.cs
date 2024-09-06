@@ -6,40 +6,45 @@ public partial class TimerUI : Control
 {
     public override void _Ready()
     {
-        minutes = 0;
-        seconds = 0;
+        Minutes = 0;
+        Seconds = 0;
         secondsLabel = GetNode<Label>("Seconds");
         minutesLabel = GetNode<Label>("Minutes");
         UpdateLabels();
     }
+
+    public void AssignTime(int minutes, int seconds)
+    {
+        Seconds = seconds;
+        Minutes = minutes;
+        UpdateLabels();
+    }
     // Needs to be hooked up to a timer object to call this method
-    private void OnTimerTimeout()
+    protected virtual void OnTimerTimeout()
     {
         // when seconds reaches 60, the modulus operator makes sure it becomes 0 again.
-        seconds = (seconds + 1) % 60; 
-        if (seconds == 0)
+        Seconds = (Seconds + 1) % 60; 
+        if (Seconds == 0)
         {
-            minutes++;
+            Minutes++;
         }
         UpdateLabels();
-        if (minutes == EndTime)
-        {
-            EmitSignal(SignalName.GameEnd);
-        }
+        // if (minutes == EndTime)
+        // {
+        //     EmitSignal(SignalName.GameEnd);
+        // }
     }
     // Update Label Text
     private void UpdateLabels()
     {
-        secondsLabel.Text = seconds.ToString("00");
-        minutesLabel.Text = minutes.ToString("00");
+        secondsLabel.Text = Seconds.ToString("00");
+        minutesLabel.Text = Minutes.ToString("00");
     }
-
-    [Export] public int EndTime;
-    [Signal] public delegate void GameEndEventHandler();
+    // [Export] public int EndTime;
+    // [Signal] public delegate void GameEndEventHandler();
     
-    // Private fields
-    private int seconds;
-    private int minutes;
-    private Label secondsLabel;
-    private Label minutesLabel;
+    public int Seconds { get; set; }
+    public int Minutes { get; set; }
+    protected Label secondsLabel;
+    protected Label minutesLabel;
 }
