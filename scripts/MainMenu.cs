@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using Godot;
-using PongClone.scripts;
 
 public partial class MainMenu : Control
 {
@@ -26,6 +23,7 @@ public partial class MainMenu : Control
     private void OnStartButtonPressed()
     {
         EmitSignal(SignalName.GameSelect);
+        GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
         HideControls();
     }
 
@@ -42,5 +40,4 @@ public partial class MainMenu : Control
     {
         GetTree().Quit();
     }
-
 }

@@ -12,5 +12,5 @@ public partial class TwoPlayerTimerUI : TimerUI
         }
     }
 
-    [Export] public int EndTime;
+    public int EndTime;
 }

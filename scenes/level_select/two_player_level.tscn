@@ -37,7 +37,6 @@ offset_top = -4.0
 offset_right = 343.0
 offset_bottom = -4.0
 script = ExtResource("6_8ao5g")
-EndTime = 0
 
 [node name="UpperBoundary" parent="." instance=ExtResource("6_7fgyc")]
 

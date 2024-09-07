@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://f1d4fsylnjs1"]
+[gd_scene load_steps=9 format=3 uid="uid://f1d4fsylnjs1"]
 
 [ext_resource type="Texture2D" uid="uid://c0qj5q030cg28" path="res://assets/art/background.jpg" id="1_hayod"]
 [ext_resource type="PackedScene" uid="uid://d1rghs6x65340" path="res://scenes/dot.tscn" id="2_80e61"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dmkpn1jvp270u" path="res://assets/fonts/New_Amsterdam/NewAmsterdam-Regular.ttf" id="5_a1itb"]
 [ext_resource type="PackedScene" uid="uid://dbxr0wamjxq62" path="res://scenes/button.tscn" id="6_yqrmc"]
 [ext_resource type="PackedScene" uid="uid://cii753tsupyin" path="res://scenes/game_select.tscn" id="7_vx5d1"]
+[ext_resource type="AudioStream" uid="uid://hc4jctntxodq" path="res://assets/sound/zapsplat_multimedia_game_sound_click_selection_menu_002_73512.mp3" id="8_p6lhr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -93,6 +94,11 @@ offset_right = 296.0
 offset_bottom = 600.0
 text = "Exit
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(40, 304)
+stream = ExtResource("8_p6lhr")
+pitch_scale = 0.75
 
 [connection signal="GameSelect" from="." to="GameSelect" method="OnMainMenuGameSelect"]
 [connection signal="Exit" from="GameSelect" to="." method="OnGameSelectExit"]
