@@ -20,10 +20,13 @@ The game consists of two game modes:
 I learned a lot of things while working on this project.
 
 * Sometimes you just have to get things working instead of procrastinating on the best abstraction method...
+* However, you still have to refactor at the end of the day, you're always going to find better use for your entities at some point in development
+* Coding settings and game state logic was actually harder than the core game...Not sure how that happened.
 
 ## Credits
 
 Sound Effects from SoundBible: Shake and Roll Dice Sound Effect: [**Mike Koenig**](https://soundbible.com/182-Shake-And-Roll-Dice.html#)
+
 Start Click Sound from [ZapSlat](https://www.zapsplat.com)
 
 ## License
