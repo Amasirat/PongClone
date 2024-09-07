@@ -109,6 +109,11 @@ public partial class GameStateManager : Node
         }
         using var file = FileAccess.Open(BestTimePath, FileAccess.ModeFlags.Read);
         
+        string[] bestTimeArray = file.GetCsvLine();
+        
+        BestTime = new Vector2(int.Parse(bestTimeArray[0]), int.Parse(bestTimeArray[1]));
+        
+        GD.Print(BestTime);
     }
 
     public void CreateBestTimeRecord()
