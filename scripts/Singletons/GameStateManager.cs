@@ -2,7 +2,6 @@ namespace PongClone.scripts;
 
 using System;
 using Godot;
-using System.Collections.Generic;
 
 public partial class GameStateManager : Node
 {
@@ -112,8 +111,6 @@ public partial class GameStateManager : Node
         string[] bestTimeArray = file.GetCsvLine();
         
         BestTime = new Vector2(int.Parse(bestTimeArray[0]), int.Parse(bestTimeArray[1]));
-        
-        GD.Print(BestTime);
     }
 
     public void CreateBestTimeRecord()
