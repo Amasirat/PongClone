@@ -62,18 +62,20 @@ vertical_alignment = 1
 
 [node name="ExitButton" parent="Panel" instance=ExtResource("3_2t2km")]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 320.0
-offset_right = 239.0
-offset_bottom = 408.0
+offset_left = 64.0
+offset_top = 344.0
+offset_right = 240.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
 text = "Exit to Menu"
 
 [node name="TryButton" parent="Panel" instance=ExtResource("3_2t2km")]
 layout_mode = 0
-offset_left = 424.0
-offset_top = 320.0
+offset_left = 408.0
+offset_top = 344.0
 offset_right = 584.0
-offset_bottom = 408.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
 text = "Try Again"
 
 [connection signal="pressed" from="Panel/ExitButton" to="." method="OnExitButtonPressed"]

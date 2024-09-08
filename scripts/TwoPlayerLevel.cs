@@ -1,17 +1,6 @@
 using Godot;
 using PongClone.scripts;
-/// <summary>
-/// The main script handles the ongoings of a Pong game session. It contains relevant children nodes
-/// and assigns references to them in InitializeReferenceNodes method.
-/// ApplyConfigStates uses the GameStateManager singleton to retrieve its stored states and apply them, I.E
-/// TimeLimit and revertControls.
-///
-/// Signals:
-///     RightUpdate: Orders ScoreUI to update the RightScore
-///     LeftUpdate: Orders ScoreUI to update the LeftScore
-///     Respawn: It orders the dot to respawn itself.
-/// </summary>
-public partial class TwoPlayerLevel : Node2D
+public sealed partial class TwoPlayerLevel : Level
 {
     [Signal]
     public delegate void RightUpdateEventHandler();
@@ -19,43 +8,18 @@ public partial class TwoPlayerLevel : Node2D
     public delegate void LeftUpdateEventHandler();
     [Signal]
     public delegate void RespawnEventHandler(Vector2 pos, int direction);
-    [Signal]
-    public delegate void ExitEventHandler();
-    public override void _Ready()
+    protected override void InitializeReferenceNodes()
     {
-        InitializeReferenceNodes();
-        ApplyConfigStates();
-    }
-    
-    public override void _Process(double delta)
-    {
-        if (Input.IsActionJustPressed("exit"))
-        {
-            EmitSignal(SignalName.Exit);
-        }
-    }
-    // do all code references of main's child nodes here, meant to be called from _Ready method
-    private void InitializeReferenceNodes()
-    {
+        base.InitializeReferenceNodes();
         dotPosition = GetNode<Marker2D>("DotPosition");
         delay = GetNode<Timer>("RespawnDelay");
         timer = GetNode<Timer>("Timer");
         timerUI = GetNode<TwoPlayerTimerUI>("TimerUI");
-        leftGuard = GetNode<Guard>("LeftGuard");
-        rightGuard = GetNode<Guard>("RightGuard");
     }
-    private void ApplyConfigStates()
+    protected override void ApplyConfigStates()
     {
+        base.ApplyConfigStates();
         timerUI.EndTime = GameStateManager.Instance.TimeLimit;
-        
-        if (GameStateManager.Instance.RevertControls)
-        {
-            leftGuard.upAction = "arrow_move_up";
-            leftGuard.downAction = "arrow_move_down";
-
-            rightGuard.upAction = "wasd_move_up";
-            rightGuard.downAction = "wasd_move_down";
-        }
     }
     // Once the dot enters GoalArea, the main script sends a signal to the ScoreUI to change its values
     private void OnGoalAreaLeft()
@@ -101,6 +65,4 @@ public partial class TwoPlayerLevel : Node2D
     private Timer timer;
     private TwoPlayerTimerUI timerUI;
     private int dotDirection;
-    private Guard leftGuard;
-    private Guard rightGuard; 
 }
