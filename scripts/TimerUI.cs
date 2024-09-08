@@ -45,6 +45,6 @@ public partial class TimerUI : Control
     
     public int Seconds { get; set; }
     public int Minutes { get; set; }
-    protected Label secondsLabel;
-    protected Label minutesLabel;
+    private Label secondsLabel;
+    private Label minutesLabel;
 }

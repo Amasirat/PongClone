@@ -26,7 +26,7 @@ public partial class Dot : RigidBody2D
         }
     }
 
-    public void Respawn(Vector2 pos, int direction)
+    private void Respawn(Vector2 pos, int direction)
     {
         Vector2 velocity = new Vector2(InitialVelocity.X * direction, InitialVelocity.Y);
         LinearVelocity = velocity;

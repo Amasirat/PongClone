@@ -12,5 +12,5 @@ public partial class TwoPlayerTimerUI : TimerUI
         }
     }
 
-    public int EndTime;
+    public int EndTime { get; set; }
 }

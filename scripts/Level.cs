@@ -40,6 +40,6 @@ public abstract partial class Level : Node2D
             rightGuard.downAction = "wasd_move_down";
         }
     }
-    protected Guard leftGuard;
-    protected Guard rightGuard;
+    private Guard leftGuard;
+    private Guard rightGuard;
 }

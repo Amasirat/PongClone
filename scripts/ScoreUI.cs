@@ -6,12 +6,12 @@ public partial class ScoreUI : Control
         rightLabel = GetNode<Label>("RightScore");
         leftLabel = GetNode<Label>("LeftScore");
     }
-    public void UpdateLeftScore()
+    private void UpdateLeftScore()
     {
         LeftScore++;
         leftLabel.Text = LeftScore.ToString();
     }
-    public void UpdateRightScore()
+    private void UpdateRightScore()
     {
         RightScore++;
         rightLabel.Text = RightScore.ToString();

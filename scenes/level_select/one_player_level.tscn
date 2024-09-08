@@ -21,7 +21,7 @@ collision_mask = 3
 mass = 0.1
 linear_velocity = Vector2(0, 0)
 InitialVelocity = Vector2(6, 4)
-BoostAmount = 0.6
+BoostAmount = 0.3
 
 [node name="TimerUI" parent="." instance=ExtResource("5_j1xh0")]
 offset_left = 330.0

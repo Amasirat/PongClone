@@ -50,12 +50,12 @@ public partial class SettingsMenu : Control
         }
     }
     // When the Back button is pressed
-    public void OnBackButtonPressed()
+    private void OnBackButtonPressed()
     {
         GetTree().ChangeSceneToFile("res://scenes/main_menu.tscn");
     }
 // when the Apply button is pressed
-    public void OnApplyButtonPressed()
+    private void OnApplyButtonPressed()
     {
         // Change states
         GameStateManager.Instance.TimeLimit = int.Parse(GetNode<OptionButton>("TimeInput").Text);
