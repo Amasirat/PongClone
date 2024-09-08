@@ -10,7 +10,7 @@ public partial class OnePlayerEndPopUp : Control
         bestTime = GetNode<TimerUI>("Panel/BestTime");
     }
 
-    private void OnEndGame(OnePlayerTimerUI time)
+    private void OnEndGame(TimerUI time)
     {
         Show();
         GetTree().Paused = true;

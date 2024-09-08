@@ -43,7 +43,7 @@ offset_top = 16.0
 offset_right = 285.0
 offset_bottom = 107.0
 theme_override_fonts/font = ExtResource("1_ahth1")
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 60
 text = "Your Time"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -55,17 +55,17 @@ offset_top = 192.0
 offset_right = 276.0
 offset_bottom = 283.0
 theme_override_fonts/font = ExtResource("1_ahth1")
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 60
 text = "Best Time"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ExitButton" parent="Panel" instance=ExtResource("3_2t2km")]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 72.0
 offset_top = 344.0
-offset_right = 240.0
-offset_bottom = 400.0
+offset_right = 248.0
+offset_bottom = 416.0
 theme_override_font_sizes/font_size = 35
 text = "Exit to Menu"
 
@@ -74,7 +74,7 @@ layout_mode = 0
 offset_left = 408.0
 offset_top = 344.0
 offset_right = 584.0
-offset_bottom = 400.0
+offset_bottom = 416.0
 theme_override_font_sizes/font_size = 35
 text = "Try Again"
 

@@ -3,9 +3,9 @@ using PongClone.scripts;
 
 public partial class OnePlayerLevel : Level
 {
-    [Signal] public delegate void EndGameEventHandler(OnePlayerTimerUI time);
+    [Signal] public delegate void EndGameEventHandler(TimerUI time);
     private void OnGoalArea()
     {
-        EmitSignal(SignalName.EndGame, GetNode<OnePlayerTimerUI>("TimerUI"));
+        EmitSignal(SignalName.EndGame, GetNode<TimerUI>("TimerUI"));
     }
 }
